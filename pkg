@@ -10,19 +10,28 @@ if [ "$1" = "build" ]; then
     case "$pkg" in
     micro|fastmod|ripgrep)
         cd "src/${pkg}"
-        v="$(git_version)"
         make
-        cd -
-        rm -f "${pkg}-"*
-        ln -sv "src/${pkg}/${pkg}" "${pkg}-${v}"
-        # aliases
-        alias="$pkg"
-        case "$pkg" in
-            ripgrep) alias=rg ;;
-        esac
-        ln -svf "${pkg}-${v}" "$alias"
+        ;;
+    tmux)
+        cd src/tmux
+        sh autogen.sh
+        CFLAGS="-O3 -flto -march=native" ./configure
+        make
         ;;
     *)
-        echo "packages:"; ls -1 src
+        echo "packages:"
+        ls -1 src
+        exit 1
     esac
+
+    v="$(git_version)"
+    cd -
+    rm -f "${pkg}-"*
+    ln -sv "src/${pkg}/${pkg}" "${pkg}-${v}"
+    # aliases
+    alias="$pkg"
+    case "$pkg" in
+        ripgrep) alias=rg ;;
+    esac
+    ln -svf "${pkg}-${v}" "$alias"
 fi
