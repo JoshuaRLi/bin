@@ -4,3 +4,6 @@
 [submodule "src/fastmod"]
 	path = src/fastmod
 	url = https://github.com/joshuarli/fastmod
+[submodule "src/ripgrep"]
+	path = src/ripgrep
+	url = https://github.com/joshuarli/ripgrep

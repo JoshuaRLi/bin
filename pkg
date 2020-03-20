@@ -8,14 +8,19 @@ git_version () {
 if [ "$1" = "build" ]; then
     pkg="$2"
     case "$pkg" in
-    micro|fastmod)
+    micro|fastmod|ripgrep)
         cd "src/${pkg}"
         v="$(git_version)"
         make
         cd -
         rm -f "${pkg}-"*
         ln -sv "src/${pkg}/${pkg}" "${pkg}-${v}"
-        ln -sv "${pkg}-${v}" "$pkg"
+        # aliases
+        alias="$pkg"
+        case "$pkg" in
+            ripgrep) alias=rg ;;
+        esac
+        ln -svf "${pkg}-${v}" "$alias"
         ;;
     *)
         echo "packages:"; ls -1 src
