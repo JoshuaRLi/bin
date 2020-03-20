@@ -1,0 +1,3 @@
+[submodule "src/micro"]
+	path = src/micro
+	url = https://github.com/joshuarli/micro

@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+git_version () {
+    git describe --tags --exact-match 2>/dev/null || \
+        printf %s\\n "git-$(git describe --always --dirty)"
+}
+
+if [ "$1" = "build" ]; then
+    case "$2" in
+    micro)
+        cd src/micro
+        v="$(git_version)"
+        make
+        cd -
+        ln -sv src/micro/micro "micro-${v}"
+        ln -sv "micro-${v}" micro
+        ;;
+    *)
+        echo "packages:"; ls -1 src
+    esac
+fi
