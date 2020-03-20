@@ -1,3 +1,6 @@
 [submodule "src/micro"]
 	path = src/micro
 	url = https://github.com/joshuarli/micro
+[submodule "src/fastmod"]
+	path = src/fastmod
+	url = https://github.com/joshuarli/fastmod

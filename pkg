@@ -6,14 +6,16 @@ git_version () {
 }
 
 if [ "$1" = "build" ]; then
-    case "$2" in
-    micro)
-        cd src/micro
+    pkg="$2"
+    case "$pkg" in
+    micro|fastmod)
+        cd "src/${pkg}"
         v="$(git_version)"
         make
         cd -
-        ln -sv src/micro/micro "micro-${v}"
-        ln -sv "micro-${v}" micro
+        rm -f "${pkg}-"*
+        ln -sv "src/${pkg}/${pkg}" "${pkg}-${v}"
+        ln -sv "${pkg}-${v}" "$pkg"
         ;;
     *)
         echo "packages:"; ls -1 src
