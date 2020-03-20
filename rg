@@ -1,1 +1,1 @@
-ripgrep-git-12.0.0-7-g085be0b
+rg-git-12.0.0-8-g3fe40b1
