@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# it would be nice to find out how to or modify packages such that
+# i can embed the go/rust/etc. version into their help when building
+
 git_version () {
     git describe --tags --exact-match 2>/dev/null || \
         printf %s\\n "git-$(git describe --always --dirty)"
@@ -8,7 +11,7 @@ git_version () {
 if [ "$1" = "build" ]; then
     pkg="$2"
     case "$pkg" in
-    micro|fastmod|ripgrep)
+    micro|fastmod|ripgrep|fd)
         cd "src/${pkg}"
         make
         ;;

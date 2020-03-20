@@ -10,3 +10,6 @@
 [submodule "src/tmux"]
 	path = src/tmux
 	url = https://github.com/joshuarli/tmux
+[submodule "src/fd"]
+	path = src/fd
+	url = https://github.com/joshuarli/fd
