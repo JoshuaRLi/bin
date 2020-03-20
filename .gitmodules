@@ -13,3 +13,6 @@
 [submodule "src/fd"]
 	path = src/fd
 	url = https://github.com/joshuarli/fd
+[submodule "src/alacritty"]
+	path = src/alacritty
+	url = https://github.com/joshuarli/alacritty
