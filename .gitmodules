@@ -28,3 +28,6 @@
 [submodule "src/ncdu"]
 	path = src/ncdu
 	url = https://github.com/joshuarli/ncdu
+[submodule "src/pulsemixer"]
+	path = src/pulsemixer
+	url = https://github.com/joshuarli/pulsemixer
