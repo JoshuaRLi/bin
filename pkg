@@ -24,20 +24,20 @@ if [ "$1" = "build" ]; then
             ;;
         tmux)
             cd src/tmux
-            make || {
+            make -j"$(nproc)" || {
                 sh autogen.sh
                 CFLAGS="-O3 -flto -march=native" ./configure
                 make clean
-                make
+                make -j"$(nproc)"
             }
             ;;
         ncdu)
             cd src/ncdu
-            make || {
+            make -j"$(nproc)" || {
                 autoreconf -i
                 CFLAGS="-O3 -flto -march=native" ./configure
                 make clean
-                make
+                make -j"$(nproc)"
             }
             ;;
         sym-prototype)
