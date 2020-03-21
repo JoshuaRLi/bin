@@ -30,6 +30,10 @@ if [ "$1" = "build" ]; then
                 make
             }
             ;;
+        sym-prototype)
+            cd src/sym-prototype
+            bin=sym
+            ;;
         alacritty)
             cd src/alacritty
             # TODO: macos vs. linux conditionals

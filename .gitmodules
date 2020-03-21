@@ -16,3 +16,6 @@
 [submodule "src/alacritty"]
 	path = src/alacritty
 	url = https://github.com/joshuarli/alacritty
+[submodule "src/sym-prototype"]
+	path = src/sym-prototype
+	url = https://github.com/joshuarli/sym-prototype
