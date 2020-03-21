@@ -34,6 +34,11 @@ if [ "$1" = "build" ]; then
             cd src/sym-prototype
             bin=sym
             ;;
+        ydiff)
+            cd src/ydiff
+            ln -s ydiff.py git-ydiff
+            bin=git-ydiff
+            ;;
         alacritty)
             cd src/alacritty
             # TODO: macos vs. linux conditionals
