@@ -31,3 +31,6 @@
 [submodule "src/pulsemixer"]
 	path = src/pulsemixer
 	url = https://github.com/joshuarli/pulsemixer
+[submodule "src/usermount"]
+	path = src/usermount
+	url = https://github.com/joshuarli/usermount
