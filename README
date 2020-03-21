@@ -2,3 +2,6 @@ install
 
     git clone --recursive https://github.com/joshuarli/bin "${HOME}/bin"
 
+build everything
+
+    ./pkg build $('ls' src)

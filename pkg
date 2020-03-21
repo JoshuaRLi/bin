@@ -9,47 +9,48 @@ git_version () {
 }
 
 if [ "$1" = "build" ]; then
-    pkg="$2"
-    bin="$pkg"
-    case "$pkg" in
-    micro|fastmod|fd)
-        cd "src/${pkg}"
-        make
-        ;;
-    ripgrep)
-        cd src/ripgrep
-        make
-        bin=rg
-        ;;
-    tmux)
-        cd src/tmux
-        sh autogen.sh
-        CFLAGS="-O3 -flto -march=native" ./configure
-        make
-        ;;
-    alacritty)
-        cd src/alacritty
-        # TODO: macos vs. linux conditionals
-        # under linux, would like to build with only wayland feature
-        make
-        bin=alacritty-bin
-        # macos only (needed to launch from spotlight)
-        cat <<EOF > "${bin}.command"
+    shift
+    for pkg in "$@"; do
+        bin="$pkg"
+        case "$pkg" in
+        micro|fastmod|fd)
+            cd "src/${pkg}"
+            make
+            ;;
+        ripgrep)
+            cd src/ripgrep
+            make
+            bin=rg
+            ;;
+        tmux)
+            cd src/tmux
+            sh autogen.sh
+            CFLAGS="-O3 -flto -march=native" ./configure
+            make
+            ;;
+        alacritty)
+            cd src/alacritty
+            # TODO: macos vs. linux conditionals
+            # under linux, would like to build with only wayland feature
+            make
+            bin=alacritty-bin
+            # macos only (needed to launch from spotlight)
+            cat <<EOF > "${bin}.command"
 #!/bin/sh
 "${PWD}/${bin}" &
 disown && exit 0
 EOF
-        chmod u+x "${bin}.command"
-        ;;
-    *)
-        echo "packages:"
-        ls -1 src
-        exit 1
-    esac
+            chmod u+x "${bin}.command"
+            ;;
+        *)
+            echo "package ${pkg} not found"
+            continue
+        esac
 
-    v="$(git_version)"
-    cd -
-    rm -f "${bin}-"*
-    ln -sv "src/${pkg}/${bin}" "${bin}-${v}"
-    ln -svf "${bin}-${v}" "$bin"
+        v="$(git_version)"
+        cd -
+        rm -f "${bin}-"*
+        ln -sv "src/${pkg}/${bin}" "${bin}-${v}"
+        ln -svf "${bin}-${v}" "$bin"
+    done
 fi
