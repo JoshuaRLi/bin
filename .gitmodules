@@ -37,3 +37,6 @@
 [submodule "src/direnv"]
 	path = src/direnv
 	url = https://github.com/joshuarli/direnv
+[submodule "src/fzy"]
+	path = src/fzy
+	url = https://github.com/joshuarli/fzy
