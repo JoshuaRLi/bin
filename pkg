@@ -13,7 +13,7 @@ if [ "$1" = "build" ]; then
     for pkg in "$@"; do
         bin="$pkg"
         case "$pkg" in
-        micro|fastmod|fd|srv|direnv|usermount|fzy|vape)
+        micro|fastmod|fd|srv|direnv|usermount|fzy|vape|tokei)
             cd "src/${pkg}"
             make
             ;;
