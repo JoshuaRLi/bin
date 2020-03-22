@@ -34,3 +34,6 @@
 [submodule "src/usermount"]
 	path = src/usermount
 	url = https://github.com/joshuarli/usermount
+[submodule "src/direnv"]
+	path = src/direnv
+	url = https://github.com/joshuarli/direnv
