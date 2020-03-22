@@ -26,19 +26,21 @@ if [ "$1" = "build" ]; then
             cd src/tmux
             make -j"$(nproc)" || {
                 sh autogen.sh
-                CFLAGS="-O3 -flto -march=native" ./configure
+                CC=gcc CFLAGS="-g0 -O3 -flto -march=native" ./configure
                 make clean
                 make -j"$(nproc)"
             }
+            strip tmux
             ;;
         ncdu)
             cd src/ncdu
             make -j"$(nproc)" || {
                 autoreconf -i
-                CFLAGS="-O3 -flto -march=native" ./configure
+                CC=clang CFLAGS="-g0 -O3 -flto -march=native" ./configure
                 make clean
                 make -j"$(nproc)"
             }
+            strip ncdu
             ;;
         sym-prototype)
             cd src/sym-prototype
