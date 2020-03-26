@@ -2,6 +2,36 @@ install
 
     git clone --recursive https://github.com/joshuarli/bin "${HOME}/bin"
 
+
 build everything
 
     ./pkg build $('ls' src)
+
+
+todo
+
+    volta
+        - waiting for upstream to slim the build down, or i'll take matters into my own hands
+
+    aria2c
+        - a bit tricky to compile, will revisit
+
+    htop
+        - kind of want to replace this soon anyways with something better
+
+    editorconfig-core-c
+
+    rsync
+
+    restic
+        - waiting until 1.x
+
+    jpegoptim w/ mozjpeg
+
+    mpv
+        - i have a pkgbuild for this already, but may port over in the future
+
+
+not necessary
+
+    git (ubiquitous)
