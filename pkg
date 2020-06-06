@@ -4,8 +4,9 @@
 # i can embed the go/rust/etc. version into their help when building
 
 git_version () {
-    git describe --tags --exact-match 2>/dev/null || \
-        printf %s\\n "git-$(git describe --always --dirty)"
+    printf '%s-%s\n' \
+        "$(git describe --tags --abbrev=0)" \
+        "$(git log -1 --pretty=format:'%h')"
 }
 
 if [ "$1" = "build" ]; then
