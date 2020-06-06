@@ -14,9 +14,14 @@ if [ "$1" = "build" ]; then
     for pkg in "$@"; do
         bins="$pkg"
         case "$pkg" in
-        micro|fastmod|fd|srv|direnv|usermount|fzy|vape|tokei)
+        fastmod|fd|srv|direnv|usermount|fzy|vape|tokei)
             cd "src/${pkg}"
             make
+            ;;
+        micro)
+            cd src/micro
+            make
+            ./micro -plugin install editorconfig
             ;;
         ripgrep)
             cd src/ripgrep
