@@ -49,3 +49,6 @@
 [submodule "src/volta"]
 	path = src/volta
 	url = https://github.com/joshuarli/volta
+[submodule "src/torrent"]
+	path = src/torrent
+	url = https://github.com/joshuarli/torrent
