@@ -11,7 +11,7 @@ git_version () {
 if [ "$1" = "build" ]; then
     shift
     for pkg in "$@"; do
-        bin="$pkg"
+        bins="$pkg"
         case "$pkg" in
         micro|fastmod|fd|srv|direnv|usermount|fzy|vape|tokei)
             cd "src/${pkg}"
@@ -20,7 +20,7 @@ if [ "$1" = "build" ]; then
         ripgrep)
             cd src/ripgrep
             make
-            bin=rg
+            bins=rg
             ;;
         tmux)
             cd src/tmux
@@ -44,7 +44,7 @@ if [ "$1" = "build" ]; then
             ;;
         sym-prototype)
             cd src/sym-prototype
-            bin=sym
+            bins=sym
             ;;
         pulsemixer)
             cd src/pulsemixer
@@ -52,14 +52,19 @@ if [ "$1" = "build" ]; then
         ydiff)
             cd src/ydiff
             ln -s ydiff.py git-ydiff
-            bin=git-ydiff
+            bins=git-ydiff
+            ;;
+        volta)
+            cd src/volta
+            make
+            bins='volta volta-shim volta-migrate'
             ;;
         alacritty)
             cd src/alacritty
             # TODO: macos vs. linux conditionals
             # under linux, would like to build with only wayland feature
             make
-            bin=alacritty-bin
+            bins=alacritty-bin
             # macos only (needed to launch from spotlight)
             cat <<EOF > "${bin}.command"
 #!/bin/sh
@@ -75,8 +80,10 @@ EOF
 
         v="$(git_version)"
         cd -
-        rm -f "${bin}-"*
-        ln -sv "src/${pkg}/${bin}" "${bin}-${v}"
-        ln -svf "${bin}-${v}" "$bin"
+        for bin in $bins; do
+            rm -f "${bin}-"*
+            ln -sv "src/${pkg}/${bin}" "${bin}-${v}"
+            ln -svf "${bin}-${v}" "$bin"
+        done
     done
 fi

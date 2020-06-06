@@ -46,3 +46,6 @@
 [submodule "src/tokei"]
 	path = src/tokei
 	url = https://github.com/joshuarli/tokei
+[submodule "src/volta"]
+	path = src/volta
+	url = https://github.com/joshuarli/volta
