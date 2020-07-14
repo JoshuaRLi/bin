@@ -52,13 +52,13 @@ if [ "$1" = "build" ]; then
             cd src/sym-prototype
             bins=sym
             ;;
-        pulsemixer)
-            cd src/pulsemixer
+        ydiff|pulsemixer)
+            cd "src/${pkg}"
             ;;
-        ydiff)
+        ydiff-bin)
             cd src/ydiff
-            ln -s ydiff.py git-ydiff
-            bins=git-ydiff
+            make
+            pkg=ydiff
             ;;
         volta)
             cd src/volta
