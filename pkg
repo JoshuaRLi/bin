@@ -62,8 +62,13 @@ if [ "$1" = "build" ]; then
             ;;
         volta)
             cd src/volta
-            make
-            bins='volta volta-shim volta-migrate'
+            RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
+            mv target/release/volta volta
+            strip volta
+            mv target/release/volta-shim volta-shim
+            strip volta-shim
+            # volta-migrate
+            bins='volta volta-shim'
             ;;
         torrent)
             cd src/torrent
