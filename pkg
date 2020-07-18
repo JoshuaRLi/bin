@@ -32,7 +32,7 @@ if [ "$1" = "build" ]; then
             cd src/tmux
             make -j"$(nproc)" || {
                 sh autogen.sh
-                CC=gcc CFLAGS="-g0 -O3 -flto -march=native" ./configure
+                CC=gcc CFLAGS="-O2 -flto -pipe -march=native" ./configure
                 make clean
                 make -j"$(nproc)"
             }
@@ -42,7 +42,7 @@ if [ "$1" = "build" ]; then
             cd src/ncdu
             make -j"$(nproc)" || {
                 autoreconf -i
-                CC=clang CFLAGS="-g0 -O3 -flto -march=native" ./configure
+                CC=gcc CFLAGS="-O2 -flto -pipe -march=native" ./configure
                 make clean
                 make -j"$(nproc)"
             }
