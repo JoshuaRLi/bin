@@ -14,22 +14,28 @@ if [ "$1" = "build" ]; then
     for pkg in "$@"; do
         bins="$pkg"
         case "$pkg" in
-        fastmod|fd|srv|direnv|usermount)
+        fastmod|srv|direnv|usermount)
             cd "src/${pkg}"
             make
             ;;
         micro)
-            cd src/micro
+            cd "src/${pkg}"
             make
             ./micro -plugin install editorconfig
             ;;
         ripgrep)
-            cd src/ripgrep
+            cd "src/${pkg}"
             make
             bins=rg
             ;;
+        fd)
+            cd "src/${pkg}"
+            RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
+            mv target/release/fd fd
+            strip fd
+            ;;
         tmux)
-            cd src/tmux
+            cd "src/${pkg}"
             make -j"$(nproc)" || {
                 sh autogen.sh
                 CC=gcc CFLAGS="-O2 -flto -pipe -march=native" ./configure
@@ -39,7 +45,7 @@ if [ "$1" = "build" ]; then
             strip tmux
             ;;
         ncdu)
-            cd src/ncdu
+            cd "src/${pkg}"
             make -j"$(nproc)" || {
                 autoreconf -i
                 CC=gcc CFLAGS="-O2 -flto -pipe -march=native" ./configure
@@ -49,7 +55,7 @@ if [ "$1" = "build" ]; then
             strip ncdu
             ;;
         sym-prototype)
-            cd src/sym-prototype
+            cd "src/${pkg}"
             bins=sym
             ;;
         ydiff|pulsemixer)
@@ -61,7 +67,7 @@ if [ "$1" = "build" ]; then
             pkg=ydiff
             ;;
         volta)
-            cd src/volta
+            cd "src/${pkg}"
             RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
             mv target/release/volta volta
             strip volta
@@ -71,12 +77,12 @@ if [ "$1" = "build" ]; then
             bins='volta volta-shim'
             ;;
         torrent)
-            cd src/torrent
+            cd "src/${pkg}"
             make -j"$(nproc)"
             bins='torrent torrentfs magnet-metainfo'
             ;;
         alacritty)
-            cd src/alacritty
+            cd "src/${pkg}"
             # TODO: macos vs. linux conditionals
             # under linux, would like to build with only wayland feature
             make
