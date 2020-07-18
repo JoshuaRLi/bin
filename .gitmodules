@@ -37,15 +37,6 @@
 [submodule "src/direnv"]
 	path = src/direnv
 	url = https://github.com/joshuarli/direnv
-[submodule "src/fzy"]
-	path = src/fzy
-	url = https://github.com/joshuarli/fzy
-[submodule "src/vape"]
-	path = src/vape
-	url = https://github.com/joshuarli/vape
-[submodule "src/tokei"]
-	path = src/tokei
-	url = https://github.com/joshuarli/tokei
 [submodule "src/volta"]
 	path = src/volta
 	url = https://github.com/joshuarli/volta
