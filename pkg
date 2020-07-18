@@ -25,7 +25,9 @@ if [ "$1" = "build" ]; then
             ;;
         ripgrep)
             cd "src/${pkg}"
-            make
+            RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
+            mv target/release/rg rg
+            strip rg
             bins=rg
             ;;
         fd)
