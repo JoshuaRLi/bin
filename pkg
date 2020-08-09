@@ -78,11 +78,6 @@ if [ "$1" = "build" ]; then
             # volta-migrate
             bins='volta volta-shim'
             ;;
-        torrent)
-            cd "src/${pkg}"
-            make -j"$(nproc)"
-            bins='torrent torrentfs magnet-metainfo'
-            ;;
         alacritty)
             cd "src/${pkg}"
             # TODO: macos vs. linux conditionals
