@@ -34,6 +34,3 @@
 [submodule "src/direnv"]
 	path = src/direnv
 	url = https://github.com/joshuarli/direnv
-[submodule "src/volta"]
-	path = src/volta
-	url = https://github.com/joshuarli/volta
