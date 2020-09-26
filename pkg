@@ -37,6 +37,7 @@ if [ "$1" = "build" ]; then
             strip fd
             ;;
         tmux)
+            # needs: autoconf, automake, bison
             cd "src/${pkg}"
             make -j"$(nproc)" || {
                 sh autogen.sh
@@ -69,6 +70,7 @@ if [ "$1" = "build" ]; then
             pkg=ydiff
             ;;
         alacritty)
+            # needs fontconfig
             cd "src/${pkg}"
             # TODO: macos vs. linux conditionals
             # under linux, would like to build with only wayland feature
