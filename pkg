@@ -14,7 +14,7 @@ if [ "$1" = "build" ]; then
     for pkg in "$@"; do
         bins="$pkg"
         case "$pkg" in
-        fastmod|srv|direnv)
+        fastmod|srv|direnv|delta)
             cd "src/${pkg}"
             make
             ;;
