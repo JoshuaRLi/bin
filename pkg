@@ -61,13 +61,8 @@ if [ "$1" = "build" ]; then
             cd "src/${pkg}"
             bins=sym
             ;;
-        ydiff|pulsemixer)
+        pulsemixer)
             cd "src/${pkg}"
-            ;;
-        ydiff-bin)
-            cd src/ydiff
-            make
-            pkg=ydiff
             ;;
         alacritty)
             # needs fontconfig

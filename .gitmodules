@@ -19,9 +19,6 @@
 [submodule "src/sym-prototype"]
 	path = src/sym-prototype
 	url = https://github.com/joshuarli/sym-prototype
-[submodule "src/ydiff"]
-	path = src/ydiff
-	url = https://github.com/joshuarli/ydiff
 [submodule "src/srv"]
 	path = src/srv
 	url = https://github.com/joshuarli/srv
