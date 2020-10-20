@@ -72,12 +72,14 @@ if [ "$1" = "build" ]; then
             make
             bins=alacritty-bin
             # macos only (needed to launch from spotlight)
-            cat <<EOF > "${bin}.command"
+            if [ "$(uname)" = 'Darwin' ]; then
+                cat <<EOF > "alacritty.command"
 #!/bin/sh
-"${PWD}/${bin}" &
+"${HOME}/bin/alacritty-bin" &
 disown && exit 0
 EOF
-            chmod u+x "${bin}.command"
+                chmod u+x "alacritty.command"
+            fi
             ;;
         *)
             echo "package ${pkg} not found"
