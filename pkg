@@ -14,7 +14,7 @@ if [ "$1" = "build" ]; then
     for pkg in "$@"; do
         bins="$pkg"
         case "$pkg" in
-        fastmod|srv|direnv|delta)
+        fastmod|srv|direnv)
             cd "src/${pkg}"
             make
             ;;
@@ -30,11 +30,11 @@ if [ "$1" = "build" ]; then
             strip rg
             bins=rg
             ;;
-        fd)
+        fd|delta)
             cd "src/${pkg}"
             RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
-            mv target/release/fd fd
-            strip fd
+            mv "target/release/${pkg}" "$pkg"
+            strip "$pkg"
             ;;
         tmux)
             # needs: autoconf, automake, bison
