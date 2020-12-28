@@ -34,3 +34,6 @@
 [submodule "src/delta"]
 	path = src/delta
 	url = https://github.com/joshuarli/delta
+[submodule "src/restic"]
+	path = src/restic
+	url = https://github.com/joshuarli/restic
