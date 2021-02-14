@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+DIR="$(mktemp -d)" || exit
+
+trap "rm -rf ${DIR}" EXIT
+
+unzip "$1" -d "${DIR}/extracted"
+cd "${DIR}/extracted"
+fd -e jpg -e jpeg -x \
+  jpegoptim -m85 -s {}
+fd -e png -x \
+  pngquant --skip-if-larger --quality=85 --strip --speed 1 --ext .png --force {}
+
+# This is assuming Info-Zip's Zip 3.0 (July 5th 2008).
+# The mimetype file needs to be added first, and without compression.
+zip -X0   "${DIR}/out.zip" mimetype
+zip -X9ur "${DIR}/out.zip" .
+cd -
+
+# We could have passed -u to update the source epub in-place, but meh.
+# Just write a new -optimized epub.
+mv "${DIR}/out.zip" "${1%.*}-optimized.epub"
