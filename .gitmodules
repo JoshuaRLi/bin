@@ -40,3 +40,6 @@
 [submodule "src/zenith"]
 	path = src/zenith
 	url = https://github.com/joshuarli/zenith
+[submodule "src/dua-cli"]
+	path = src/dua-cli
+	url = https://github.com/joshuarli/dua-cli
