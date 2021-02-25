@@ -21,6 +21,7 @@ if [ "$1" = "build" ]; then
         micro)
             cd "src/${pkg}"
             make
+            strip ./micro
             ./micro -plugin install editorconfig
             ;;
         ripgrep)
