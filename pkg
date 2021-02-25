@@ -31,11 +31,11 @@ if [ "$1" = "build" ]; then
             strip rg
             bins=rg
             ;;
-        fd|delta)
+        fd|delta|zenith)
             cd "src/${pkg}"
             RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
             mv "target/release/${pkg}" "$pkg"
-            strip "$pkg"
+            #strip "$pkg"
             ;;
         tmux)
             # needs: autoconf, automake, bison

@@ -37,3 +37,6 @@
 [submodule "src/restic"]
 	path = src/restic
 	url = https://github.com/joshuarli/restic
+[submodule "src/zenith"]
+	path = src/zenith
+	url = https://github.com/joshuarli/zenith
