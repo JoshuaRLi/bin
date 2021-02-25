@@ -5,8 +5,8 @@
 
 git_version () {
     printf '%s-%s\n' \
-        "$(git describe --tags --abbrev=0)" \
-        "$(git log -1 --pretty=format:'%h')"
+        "$(git describe --tags --abbrev=0 2>/dev/null || printf '%s' 'git')" \
+        "$(git rev-parse --short HEAD)"
 }
 
 if [ "$1" = "build" ]; then
