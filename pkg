@@ -53,16 +53,6 @@ if [ "$1" = "build" ]; then
             }
             strip tmux
             ;;
-        ncdu)
-            cd "src/${pkg}"
-            make -j"$(nproc)" || {
-                autoreconf -i
-                CC=gcc CFLAGS="-O2 -flto -pipe -march=native" ./configure
-                make clean
-                make -j"$(nproc)"
-            }
-            strip ncdu
-            ;;
         sym-prototype)
             cd "src/${pkg}"
             bins=sym
