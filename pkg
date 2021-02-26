@@ -24,20 +24,7 @@ if [ "$1" = "build" ]; then
             strip ./micro
             ./micro -plugin install editorconfig
             ;;
-        ripgrep)
-            cd "src/${pkg}"
-            RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
-            mv target/release/rg rg
-            strip rg
-            bins=rg
-            ;;
-        dua-cli)
-            cd "src/${pkg}"
-            RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
-            mv "target/release/dua" dua
-            bins=dua
-            ;;
-        fd|delta|zenith)
+        rg|fd|delta|dua|zenith)
             cd "src/${pkg}"
             RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
             mv "target/release/${pkg}" "$pkg"

@@ -5,7 +5,7 @@
 	path = src/fastmod
 	url = https://github.com/joshuarli/fastmod
 [submodule "src/ripgrep"]
-	path = src/ripgrep
+	path = src/rg
 	url = https://github.com/joshuarli/ripgrep
 [submodule "src/tmux"]
 	path = src/tmux
