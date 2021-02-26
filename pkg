@@ -14,7 +14,7 @@ if [ "$1" = "build" ]; then
     for pkg in "$@"; do
         bins="$pkg"
         case "$pkg" in
-        fastmod|srv|direnv|restic)
+        srv|direnv|restic)
             cd "src/${pkg}"
             make
             ;;
@@ -24,7 +24,7 @@ if [ "$1" = "build" ]; then
             strip ./micro
             ./micro -plugin install editorconfig
             ;;
-        rg|fd|delta|dua|zenith)
+        rg|fd|delta|fastmod|dua|zenith)
             cd "src/${pkg}"
             RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
             mv "target/release/${pkg}" "$pkg"
