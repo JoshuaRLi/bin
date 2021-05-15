@@ -43,10 +43,13 @@ if [ "$1" = "build" ]; then
         alacritty)
             # needs fontconfig
             cd "src/${pkg}"
+
             # TODO: macos vs. linux conditionals
             # under linux, would like to build with only wayland feature
-            make
-            bins=alacritty-bin
+            bins="${pkg}-bin"
+            RUSTFLAGS="-Ctarget-cpu=native" cargo build --release
+            mv "target/release/${pkg}" "${pkg}-bin"
+
             # macos only (needed to launch from spotlight)
             if [ "$(uname)" = 'Darwin' ]; then
                 cat <<EOF > "alacritty.command"
